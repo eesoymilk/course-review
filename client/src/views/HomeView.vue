@@ -2,17 +2,26 @@
   <header>
     <nav>
       <ul class="department-nav">
-        <li class="department-item">ALL</li>
-        <li class="department-item">EECS</li>
-        <li class="department-item">OTHER</li>
+        <li @click="changeDepartment('ALL')" class="department-item">ALL</li>
+        <li @click="changeDepartment('EECS')" class="department-item">EECS</li>
+        <li @click="changeDepartment('OTHER')" class="department-item">
+          OTHER
+        </li>
       </ul>
     </nav>
   </header>
 
-  <main>Hello World!</main>
+  <main>{{ selected }}</main>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+
+const selected = ref("");
+const changeDepartment = (department) => {
+  selected.value = department;
+};
+</script>
 
 <style>
 .department-nav {
