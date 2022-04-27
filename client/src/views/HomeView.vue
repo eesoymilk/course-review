@@ -23,15 +23,15 @@ const Departments = ["All", "EECS", "Other"];
 const selected = ref("All");
 const reviews = ref(await ReviewService.getReviews());
 const filteredReviews = computed(() => {
-  console.log("hello");
-  if (selected.value === "All") return reviews.value;
   if (selected.value === "EECS")
     return reviews.value.filter(
       (r) => r.department.includes("EE") || r.department.includes("CS")
     );
-  return reviews.value.filter(
-    (r) => !r.department.includes("EE") && !r.department.includes("CS")
-  );
+  if (selected.value === "Other")
+    return reviews.value.filter(
+      (r) => !r.department.includes("EE") && !r.department.includes("CS")
+    );
+  return reviews.value;
 });
 </script>
 
